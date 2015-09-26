@@ -31,7 +31,7 @@ var Gene = function(code) {
 };
 Gene.prototype.code = '';
 Gene.prototype.random = function(length) {
-  genome = {
+  var genome = {
     "wheels" : {
       "left": Math.random(),
       "right": Math.random()
@@ -94,7 +94,7 @@ Gene.prototype.calcCost = function(compareTo) {
     this.cost = total;
 };
 
-var Cars = function(size) {
+export var Cars = function(size) {
     this.members = [];
     this.generationNumber = 0;
     while (size--) {
@@ -118,7 +118,6 @@ Cars.prototype.generation = function() {
     this.generationNumber++;
 };
 
-export Cars;
 //use example
 // var Cars = new Cars(20);
 // setInterval(function() {

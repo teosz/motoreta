@@ -33,7 +33,7 @@ gulp.task('bundle', function(callback) {
     },
     module: {
       loaders: [
-        {test: /\.jsx$/, loader: 'babel'},
+        {test: /\.(js|jsx)$/, loader: 'babel'},
         {test: /\.scss$/, loader: 'style!css!sass'},
       ],
     },
