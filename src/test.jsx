@@ -1,6 +1,6 @@
 import React from 'react'
 import { Vehicle } from './vehicle.jsx'
-import { Race } from './race.jsx'
+import { Physics } from './physics.jsx'
 import { Terrain } from './terrain.jsx'
 import { RaceView } from './race-view.jsx'
 

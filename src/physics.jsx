@@ -1,13 +1,13 @@
-import Physics from 'PhysicsJS'
+import PhysicsJS from 'PhysicsJS'
 
-export class Race {
+export class Physics {
 
   constructor() {
-    this.ball = Physics.body('compound', {
+    this.ball = PhysicsJS.body('compound', {
       x: 300,
       y: 200,
       children: [
-        Physics.body('rectangle', {
+        PhysicsJS.body('rectangle', {
             x: 0,
             y: 0,
             width: 20,
@@ -17,26 +17,26 @@ export class Race {
       ],
     })
 
-    this.bucket = Physics.body('compound', {
+    this.bucket = PhysicsJS.body('compound', {
       x: 300,
       y: 200,
       treatment: 'static',
       children: [
-        Physics.body('rectangle', {
+        PhysicsJS.body('rectangle', {
             x: -50,
             y: 0,
             width: 10,
             height: 100,
             mass: 20,
         }),
-        Physics.body('rectangle', {
+        PhysicsJS.body('rectangle', {
             x: 0,
             y: 50,
             width: 100,
             height: 10,
             mass: 20,
         }),
-        Physics.body('rectangle', {
+        PhysicsJS.body('rectangle', {
             x: 50,
             y: 0,
             width: 10,
@@ -46,7 +46,7 @@ export class Race {
       ],
     })
 
-    this.world = new Physics.world()
+    this.world = new PhysicsJS.world()
 
     this.world.add([
       this.bucket,
@@ -54,16 +54,16 @@ export class Race {
     ])
 
     this.world.add([
-      Physics.behavior('constant-acceleration'),
-      Physics.behavior('body-impulse-response'),
-      Physics.behavior('body-collision-detection'),
-      Physics.behavior('sweep-prune'),
+      PhysicsJS.behavior('constant-acceleration'),
+      PhysicsJS.behavior('body-impulse-response'),
+      PhysicsJS.behavior('body-collision-detection'),
+      PhysicsJS.behavior('sweep-prune'),
     ])
   }
 
   run() {
     let count = 0
-    Physics.util.ticker.on((time) => {
+    PhysicsJS.util.ticker.on((time) => {
         if(count > 100) return
         count += 1
         this.world.step(time)
@@ -78,5 +78,5 @@ export class Race {
 }
 
 export function demo() {
-  new Race().run()
+  new Physics().run()
 }
