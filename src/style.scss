@@ -7,10 +7,25 @@ body {
 
 }
 
+.Vehicle-svg {
+  overflow: visible;
+}
+
 .Vehicle-body {
   fill: grey;
 }
 
 .Vehicle-wheels {
   fill: black;
+}
+
+.Terrain {
+  position: absolute;
+  top: 200px;
+}
+
+.Terrain-svg {
+  overflow: visible;
+  stroke: black;
+  fill: none;
 }

@@ -11,7 +11,7 @@ export class Vehicle extends React.Component {
               let x = Math.ceil(point.length*Math.cos(point.alpha) + 60)
               let y = Math.ceil(point.length*Math.sin(point.alpha) + 30)
 
-              return " "+x+" "+y+"";
+              return " "+x+" "+y+""
             })} />
           </g>
           <g className="Vehicle-wheels">
@@ -24,13 +24,3 @@ export class Vehicle extends React.Component {
   }
 
 }
-
-
-// <g className="Vehicle-wheels">
-//   <circle cx="10" cy="10" r="{this.props.leftWheelRadius}">
-//   <circle cx="80" cy="10" r="{this.props.rightWheelRadius}">
-// </g>
-// <g className="Vehicle-body">
-//   <polyline points="1 58, 10 44, 19 58"/>
-//   {this.props.author}
-// </g>
