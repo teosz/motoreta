@@ -3,12 +3,9 @@ import Physics from 'PhysicsJS'
 export class Race {
 
   constructor() {
-    let width = 600
-    let height = 400
-
     this.ball = Physics.body('compound', {
-      x: width/2,
-      y: height/2,
+      x: 300,
+      y: 200,
       children: [
         Physics.body('rectangle', {
             x: 0,
@@ -21,8 +18,8 @@ export class Race {
     })
 
     this.bucket = Physics.body('compound', {
-      x: width/2,
-      y: height/2,
+      x: 300,
+      y: 200,
       treatment: 'static',
       children: [
         Physics.body('rectangle', {
