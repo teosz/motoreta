@@ -24,6 +24,11 @@ var terrainProps = {
   ],
 }
 
+var focus = {
+  x: 150,
+  y: 350
+}
+
 
 function rnd(min, max) {
   return min + (Math.random() * (max - min))
@@ -52,6 +57,7 @@ var model = {
     Object.assign({x: 200, y: 20, r: 0}, randomVehicle()),
     Object.assign({x: 300, y: 20, r: 0}, randomVehicle()),
   ],
+  focus: focus
 }
 
 // <RaceView

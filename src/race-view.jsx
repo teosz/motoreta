@@ -7,8 +7,10 @@ export class RaceView extends React.Component {
   render() {
     let model = this.props.model
 
-    let X, Y
-    let transform = 'translate('+X+','+Y+')'
+    let focusX = model.focus.x
+    let focusY = model.focus.y
+
+    let transform = 'translate('+focusX+'px,'+focusY+'px)'
 
     var viewportCoords = {
 
