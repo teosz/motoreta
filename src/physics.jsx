@@ -30,23 +30,26 @@ export class Physics {
     let height = geometry.height
 
     let terrain = PhysicsJS.body('compound', {
-      x: 300,
-      y: 200,
+      x: 0,
+      y: 0,
+      mass: 1000,
       treatment: 'static',
     })
 
     let A = [0, 0]
     for(let p of geometry.blocks) {
-      let x = (A[0] + width * Math.cos(p.alpha * (Math.PI / 180)) / 2) | 0
-      let y = (A[1] + width * Math.sin(p.alpha * (Math.PI / 180)) / 2) | 0
       let bar = PhysicsJS.body('rectangle', {
-        x: 0,
-        y: 0,
+        x: A[0],
+        y: A[1],
         width: width,
         height: height,
-        mass: 20,
+        mass: 1000,
       })
-      terrain.addChild(bar, new PhysicsJS.vector(x, y), p.alpha)
+      terrain.addChild(bar, new PhysicsJS.vector(A[0], A[1]), p.alpha)
+      A = [
+        (A[0] + width * Math.cos(p.alpha * (Math.PI / 180)) / 2) | 0,
+        (A[1] + width * Math.sin(p.alpha * (Math.PI / 180)) / 2) | 0,
+      ]
     }
 
     this.world.add(terrain)
@@ -64,12 +67,12 @@ export class Physics {
         x: 0,
         y: 0,
         vertices: [{x: 0, y: 0}, v0, v1],
-        mass: 20,
       })
 
     let vehicle = PhysicsJS.body('compound', {
       x: pos.x,
       y: pos.y,
+      mass: 20,
       children: [
         triangle(vertices[0], vertices[1]),
         triangle(vertices[1], vertices[2]),
@@ -84,14 +87,12 @@ export class Physics {
           y: vertices[0].y,
           width: 100,
           height: 10,
-          mass: 20,
         }),
         PhysicsJS.body('circle', {
           x: vertices[3].x,
           y: vertices[3].y,
           width: 100,
           height: 10,
-          mass: 20,
         }),
       ],
     })
