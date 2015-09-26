@@ -61,12 +61,28 @@ function randomVehicle() {
   }
 }
 
+var model = {
+  terrain: terrainProps,
+  vehicles: [
+    Object.assign({x:   0, y: 20, r: 0}, randomVehicle()),
+    Object.assign({x: 100, y: 20, r: 0}, randomVehicle()),
+    Object.assign({x: 200, y: 20, r: 0}, randomVehicle()),
+    Object.assign({x: 300, y: 20, r: 0}, randomVehicle()),
+  ],
+}
+
+// <RaceView
+//  terrain={terrain}
+//  vehicles={vehicles}
+//  focus={150, 0}
+//  />
+
 export function test() {
   let vehicle = randomVehicle()
   return(
     <div>
-      <Terrain geometry={terrainProps} />
-      <Vehicle geometry={vehicle} />
+      <Terrain geometry={model.terrain} />
+      <Vehicle geometry={model.vehicles[0]} />
     </div>
     )
 }
