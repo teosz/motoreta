@@ -1,13 +1,12 @@
 import Physics from 'PhysicsJS'
 
-export function demo() {
-  let ctx = {}
+export class Race {
 
-  Physics(function(world) {
+  constructor() {
     let width = 600
     let height = 400
 
-    var ball = Physics.body('compound', {
+    this.ball = Physics.body('compound', {
       x: width/2,
       y: height/2,
       children: [
@@ -21,7 +20,7 @@ export function demo() {
       ],
     })
 
-    var bucket = Physics.body('compound', {
+    this.bucket = Physics.body('compound', {
       x: width/2,
       y: height/2,
       treatment: 'static',
@@ -50,28 +49,37 @@ export function demo() {
       ],
     })
 
-    world.add([
-      bucket,
-      ball,
+    this.world = new Physics.world()
+
+    this.world.add([
+      this.bucket,
+      this.ball,
     ])
 
-    world.add([
+    this.world.add([
       Physics.behavior('constant-acceleration'),
       Physics.behavior('body-impulse-response'),
       Physics.behavior('body-collision-detection'),
       Physics.behavior('sweep-prune'),
     ])
+  }
 
+  run() {
     let count = 0
-    Physics.util.ticker.on(function(time) {
+    Physics.util.ticker.on((time) => {
         if(count > 100) return
         count += 1
-        world.step(time)
+        this.world.step(time)
         console.log(
-          ball.state.pos.x,
-          ball.state.pos.y,
-          ball.state.angular.pos
+          this.ball.state.pos.x,
+          this.ball.state.pos.y,
+          this.ball.state.angular.pos
         )
     })
-  })
+  }
+
+}
+
+export function demo() {
+  new Race().run()
 }

@@ -2,6 +2,7 @@ import 'babel-core/polyfill'
 require('./style.scss')
 import React from 'react'
 import { Vehicle } from './vehicle.jsx'
+import { demo } from './race.jsx'
 
 var vehicleProps = {
   "wheels" : {
@@ -30,4 +31,6 @@ window.addEventListener('load', () => {
 
     document.querySelector('body')
     )
+
+  demo()
 })
