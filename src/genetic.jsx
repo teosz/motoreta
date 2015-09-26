@@ -1,3 +1,22 @@
+function rnd(min, max) {
+  return min + (Math.random() * (max - min))
+}
+
+function randomVehicle() {
+  return {
+    wheels: {
+      left: rnd(20, 50),
+      right: rnd(20, 50),
+    },
+    axis: [0, 1, 2, 3, 4, 5, 6, 7]
+      .map(() => ({
+        alpha: rnd(0, 360),
+        length: rnd(50, 100),
+      }))
+      .sort((a, b) => a.alpha - b.alpha),
+  }
+}
+
 function clone(obj) {
     var copy;
     if (null == obj || "object" != typeof obj) return obj;
@@ -25,24 +44,7 @@ class Gene  {
     this.code = {};
   }
   random(length) {
-    let genome = {
-      "wheels" : {
-        "left": Math.random(),
-        "right": Math.random()
-      },
-
-      "axis": [{
-        "alpha" : Math.random(),
-        "length": Math.random(),
-        },
-        {
-          "alpha" : Math.random(),
-          "length": Math.random(),
-        }
-      ]
-    }
-
-    this.code = genome
+    this.code = randomVehicle()
   };
   mutate (chance) {
       if (Math.random() > chance) return;
