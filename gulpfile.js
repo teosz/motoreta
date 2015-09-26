@@ -55,6 +55,9 @@ gulp.task('build', ['bundle'], function() {
     t: (new Date()).getTime(),
   })
   fs.writeFileSync('www/index.html', index_html)
+  fs.createReadStream('src/platformer-bg.jpg').pipe(fs.createWriteStream('www/platformer-bg.jpg'));
+
+
 })
 
 gulp.task('devel', ['build'], function() {
