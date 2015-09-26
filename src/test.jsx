@@ -14,7 +14,7 @@ function randomVehicle() {
     },
     axis: [0, 1, 2, 3, 4, 5, 6, 7]
       .map(() => ({
-        alpha: rnd(0, Math.PI * 2),
+        alpha: rnd(0, 360),
         length: rnd(50, 100),
       }))
       .sort((a, b) => a.alpha - b.alpha),

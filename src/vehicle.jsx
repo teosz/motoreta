@@ -4,8 +4,8 @@ export class Vehicle extends React.Component {
 
   render() {
     let points = this.props.geometry.axis.map((p) => [
-      p.length * Math.cos(p.alpha),
-      p.length * Math.sin(p.alpha),
+      p.length * Math.cos(p.alpha * Math.PI / 180),
+      p.length * Math.sin(p.alpha * Math.PI / 180),
     ])
 
     return (
