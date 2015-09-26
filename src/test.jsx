@@ -26,7 +26,7 @@ var terrainProps = {
 
 var focus = {
   x: 150,
-  y: 350
+  y: 50
 }
 
 

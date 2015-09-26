@@ -12,13 +12,18 @@ export class RaceView extends React.Component {
 
     let transform = 'translate('+focusX+'px,'+focusY+'px)'
 
-    var viewportCoords = {
+    let bgPos = focusX*0.1*-1+'px '+focusY*0.1*-1+'px'
 
+    var viewportCoords = {
       MozTransform: transform,
       msTransform: transform,
       OTransform: transform,
       WebkitTransform: transform,
       transform: transform
+    }
+
+    var bgCoords = {
+      'background-position': bgPos
     }
 
     function repeatOften() {
@@ -28,7 +33,7 @@ export class RaceView extends React.Component {
     requestAnimationFrame(repeatOften);
 
     return (
-      <div className="RaceView">
+      <div className="RaceView" style={bgCoords}>
         <div style={viewportCoords} className="RaceView-viewport" >
           <Terrain geometry={model.terrain} />
           {model.vehicles.map((v) => <div style={{transform: "translate("+v.x+"px,"+v.y+"px)"}} className="Vehicle-container"><Vehicle geometry={v} /></div>)}

@@ -1,6 +1,37 @@
 body {
+  position: relative;
   font-family: sans-serif;
   margin: 0;
+
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+.RaceView {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  overflow-x: scroll;
+
+  background: url('/platformer-bg.jpg') center center / cover no-repeat;
+}
+
+.RaceView-viewport {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 0;
+  margin: auto;
+
+  width: 1000%;
 }
 
 .Vehicle-container {
@@ -15,6 +46,7 @@ body {
 
 .Vehicle-body {
   fill: grey;
+  stroke: rgba(0,0,0, 0.9);
 }
 
 .Vehicle-wheels {
@@ -30,26 +62,5 @@ body {
 .Terrain-svg {
   overflow: visible;
   stroke: black;
-  fill: none;
-}
-
-.RaceView {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  bottom: 10px;
-  left: 10px;
-
-  overflow: hidden;
-
-  border: 3px solid black;
-}
-
-.RaceView-viewport {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-
-  width: 1000%;
+  fill: rgba(0,0,0, 0.5);
 }
