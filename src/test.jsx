@@ -4,41 +4,23 @@ import { Race } from './race.jsx'
 import { Terrain } from './terrain.jsx'
 
 var terrainProps = {
-  "startingPoint" : {
-    "x": 10,
-    "y": 20
+  startingPoint: {
+    x: 10,
+    y: 20
   },
-
-  "width" : 100,
-  "height" : 10,
-
-  "blocks" : [{
-    "alpha" : 10
-  },
-  {
-    "alpha" : 20
-  },
-  {
-    "alpha" : -35
-  },
-  {
-    "alpha" : 15
-  },
-  {
-    "alpha" : -15
-  },
-  {
-    "alpha" : 45
-  },
-  {
-    "alpha" : -45
-  },
-  {
-    "alpha" : -30
-  },
-  {
-    "alpha" : 30
-  }]
+  width: 100,
+  height: 10,
+  blocks: [
+    {alpha: 10},
+    {alpha: 20},
+    {alpha: -35},
+    {alpha: 15},
+    {alpha: -15},
+    {alpha: 45},
+    {alpha: -45},
+    {alpha: -30},
+    {alpha: 30},
+  ],
 }
 
 
@@ -61,12 +43,28 @@ function randomVehicle() {
   }
 }
 
+var model = {
+  terrain: terrainProps,
+  vehicles: [
+    Object.assign({x:   0, y: 20, r: 0}, randomVehicle()),
+    Object.assign({x: 100, y: 20, r: 0}, randomVehicle()),
+    Object.assign({x: 200, y: 20, r: 0}, randomVehicle()),
+    Object.assign({x: 300, y: 20, r: 0}, randomVehicle()),
+  ],
+}
+
+// <RaceView
+//  terrain={terrain}
+//  vehicles={vehicles}
+//  focus={150, 0}
+//  />
+
 export function test() {
   let vehicle = randomVehicle()
   return(
     <div>
-      <Terrain geometry={terrainProps} />
-      <Vehicle geometry={vehicle} />
+      <Terrain geometry={model.terrain} />
+      <Vehicle geometry={model.vehicles[0]} />
     </div>
     )
 }
