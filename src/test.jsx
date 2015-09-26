@@ -2,7 +2,7 @@ import React from 'react'
 import { Vehicle } from './vehicle.jsx'
 import { Physics } from './physics.jsx'
 import { Terrain } from './terrain.jsx'
-import { RaceView } from './race-view.jsx'
+import { Game } from './game.jsx'
 
 var terrainProps = {
   startingPoint: {
@@ -49,28 +49,18 @@ function randomVehicle() {
   }
 }
 
-var model = {
-  terrain: terrainProps,
-  vehicles: [
+
+export function test() {
+  let randomVehicles = [
     Object.assign({x:   0, y: 20, r: 0}, randomVehicle()),
     Object.assign({x: 100, y: 20, r: 0}, randomVehicle()),
     Object.assign({x: 200, y: 20, r: 0}, randomVehicle()),
     Object.assign({x: 300, y: 20, r: 0}, randomVehicle()),
-  ],
-  focus: focus
-}
-
-// <RaceView
-//  terrain={terrain}
-//  vehicles={vehicles}
-//  focus={150, 0}
-//  />
-
-export function test() {
-  let vehicle = randomVehicle()
-  return(
-    <div>
-      <RaceView model={model} />
-    </div>
-    )
+  ]
+  return (
+    <Game
+      vehicles={randomVehicles}
+      terrain={terrainProps}
+      />
+  )
 }
