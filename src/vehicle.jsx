@@ -3,21 +3,30 @@ import React from 'react'
 export class Vehicle extends React.Component {
 
   render() {
+    let points = this.props.geometry.axis.map((p) => [
+      p.length * Math.cos(p.alpha * Math.PI / 180),
+      p.length * Math.sin(p.alpha * Math.PI / 180),
+    ])
+
     return (
       <div className="Vehicle">
-        <svg className="Vehicle-svg" width="120" height="60">
-          <g className="Vehicle-body">
-            <polyline points={"15 45, 60 30, 105 45,"+ this.props.geometry.axis.map((point) =>{
-              let x = Math.ceil(point.length*Math.cos(point.alpha) + 60)
-              let y = Math.ceil(point.length*Math.sin(point.alpha) + 30)
-
-              return " "+x+" "+y+""
-            })} />
-          </g>
+        <svg className="Vehicle-svg">
           <g className="Vehicle-wheels">
-            <circle cx="15" cy="45" r={this.props.geometry.wheels.left} />
-            <circle cx="105" cy="45" r={this.props.geometry.wheels.right} />
+            <circle
+              cx={points[0][0]}
+              cy={points[0][1]}
+              r={this.props.geometry.wheels.left}
+              />
+            <circle
+              cx={points[3][0]}
+              cy={points[3][1]}
+              r={this.props.geometry.wheels.right}
+              />
           </g>
+          <polyline
+            className="Vehicle-body"
+            points={points.map((p) => p.join(' '))}
+            />
         </svg>
       </div>
     )
