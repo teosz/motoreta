@@ -2,6 +2,7 @@ import React from 'react'
 import { Vehicle } from './vehicle.jsx'
 import { Race } from './race.jsx'
 import { Terrain } from './terrain.jsx'
+import { RaceView } from './race-view.jsx'
 
 var terrainProps = {
   "startingPoint" : {
@@ -81,8 +82,7 @@ export function test() {
   let vehicle = randomVehicle()
   return(
     <div>
-      <Terrain geometry={model.terrain} />
-      <Vehicle geometry={model.vehicles[0]} />
+      <RaceView model={model} />
     </div>
     )
 }
