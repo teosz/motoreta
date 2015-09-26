@@ -1,5 +1,5 @@
 import React from 'react'
-import { Cars } from './genetic.js'
+import { Cars } from './genetic.jsx'
 import { RaceView } from './race-view.jsx'
 
 export class Game extends React.Component {
