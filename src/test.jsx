@@ -11,18 +11,14 @@ var terrainProps = {
   },
   width: 100,
   height: 10,
-  blocks: [
-    {alpha: 10},
-    {alpha: 20},
-    {alpha: -35},
-    {alpha: 15},
-    {alpha: -15},
-    {alpha: 45},
-    {alpha: -45},
-    {alpha: -30},
-    {alpha: 30},
-  ],
+  blocks: []
 }
+
+
+for (let i = 0; i < 200; i++) {
+  terrainProps.blocks.push(randomTerrain());
+}
+
 
 var focus = {
   x: 150,
@@ -32,6 +28,12 @@ var focus = {
 
 function rnd(min, max) {
   return min + (Math.random() * (max - min))
+}
+
+function randomTerrain() {
+  return {
+    alpha: rnd(-45, 45)
+  }
 }
 
 function randomVehicle() {
