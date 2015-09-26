@@ -5,41 +5,23 @@ import { Terrain } from './terrain.jsx'
 import { RaceView } from './race-view.jsx'
 
 var terrainProps = {
-  "startingPoint" : {
-    "x": 10,
-    "y": 20
+  startingPoint: {
+    x: 10,
+    y: 20
   },
-
-  "width" : 100,
-  "height" : 10,
-
-  "blocks" : [{
-    "alpha" : 10
-  },
-  {
-    "alpha" : 20
-  },
-  {
-    "alpha" : -35
-  },
-  {
-    "alpha" : 15
-  },
-  {
-    "alpha" : -15
-  },
-  {
-    "alpha" : 45
-  },
-  {
-    "alpha" : -45
-  },
-  {
-    "alpha" : -30
-  },
-  {
-    "alpha" : 30
-  }]
+  width: 100,
+  height: 10,
+  blocks: [
+    {alpha: 10},
+    {alpha: 20},
+    {alpha: -35},
+    {alpha: 15},
+    {alpha: -15},
+    {alpha: 45},
+    {alpha: -45},
+    {alpha: -30},
+    {alpha: 30},
+  ],
 }
 
 

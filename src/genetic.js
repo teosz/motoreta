@@ -1,26 +1,3 @@
-Array.prototype.equals = function (array) {
-    // if the other array is a falsy value, return
-    if (!array)
-        return false;
-
-    // compare lengths - can save a lot of time
-    if (this.length != array.length)
-        return false;
-
-    for (var i = 0, l=this.length; i < l; i++) {
-        // Check if we have nested arrays
-        if (this[i] instanceof Array && array[i] instanceof Array) {
-            // recurse into the nested arrays
-            if (!this[i].equals(array[i]))
-                return false;
-        }
-        else if (this[i] != array[i]) {
-            // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;
-        }
-    }
-    return true;
-}
 function clone(obj) {
     var copy;
 
@@ -56,17 +33,17 @@ Gene.prototype.code = '';
 Gene.prototype.random = function(length) {
   genome = {
     "wheels" : {
-      "left": 10,
-      "right": 10
+      "left": Math.random(),
+      "right": Math.random()
     },
 
     "axis": [{
-      "alpha" : 20,
-      "length": 2,
+      "alpha" : Math.random(),
+      "length": Math.random(),
       },
       {
-        "alpha" : 10,
-        "length": 3,
+        "alpha" : Math.random(),
+        "length": Math.random(),
       }
     ]
   }
@@ -94,8 +71,8 @@ Gene.prototype.mutate = function(chance) {
 
 };
 Gene.prototype.mate = function(gene) {
-    var pivot = Math.round(this.code.length / 2) - 1;
 
+    var pivot = Math.round(this.code.length / 2) - 1;
     var child = clone(this.code)
     child.wheels.left = (this.code.wheels.left + gene.code.wheels.left)/2;
     child.wheels.right = (this.code.wheels.right + gene.code.wheels.right)/2;
@@ -103,7 +80,7 @@ Gene.prototype.mate = function(gene) {
         axe.length = this.code.axis[index].length + gene.code.axis[index].length;
         axe.alpha = this.code.axis[index].alpha + gene.code.axis[index].alpha;
     }).bind(this))
-    return [new Gene(child)];
+    return new Gene(child);
 };
 Gene.prototype.calcCost = function(compareTo) {
     var total = 0;
@@ -117,73 +94,35 @@ Gene.prototype.calcCost = function(compareTo) {
     this.cost = total;
 };
 
-var Cars = function(goal, size) {
+var Cars = function(size) {
     this.members = [];
-    this.goal = goal;
     this.generationNumber = 0;
     while (size--) {
         var gene = new Gene();
-        gene.random(this.goal.length);
+        gene.random();
         this.members.push(gene);
     }
 };
-Cars.prototype.display = function() {
-    document.body.innerHTML = '';
-    document.body.innerHTML += ("<h2>Generation: " + this.generationNumber + "</h2>");
-    document.body.innerHTML += ("<ul>");
-    for (var i = 0; i < this.members.length; i++) {
-        document.body.innerHTML += ("<li>" + JSON.stringify(this.members[i].code) + " (" + this.members[i].cost + ")");
-    }
-    document.body.innerHTML += ("</ul>");
-};
-Cars.prototype.sort = function() {
-    this.members.sort(function(a, b) {
-        return a.cost - b.cost;
-    });
-}
+
 Cars.prototype.generation = function() {
     for (var i = 0; i < this.members.length; i++) {
-        this.members[i].calcCost(this.goal);
+        if(i != this.winner)
+          this.members[i].mutate(0.1);
 
     }
-
-    this.sort();
-    this.display();
-    var children = this.members[0].mate(this.members[1]);
-    this.members.splice(this.members.length -2, 2, children[0], children[0]);
-
-    for (var i = 0; i < this.members.length; i++) {
-        this.members[i].mutate(0.1);
-        this.members[i].calcCost(this.goal);
-        if (this.members[i].cost > 0 && this.members[i].cost < 1 ) {
-            this.sort();
-            this.display();
-            return true;
-        }
+    if(this.winner != undefined)
+    {
+      var children = this.members[this.winner].mate(this.members[this.winner]);
+      this.members.splice(this.members.length -2, 2, children, children);
     }
     this.generationNumber++;
-    var scope = this;
-    setTimeout(function() {
-        scope.generation();
-    }, 20);
 };
-genome = {
-  "wheels" : {
-    "left": 10,
-    "right": 10
-  },
 
-  "axis": [{
-    "alpha" : 30,
-    "length": 2,
-    },
-    {
-      "alpha" : 30,
-      "length": 3,
-    }
-  ]
-
-}
-
-var Cars = new Cars(genome, 20);
-Cars.generation();
+export Cars;
+//use example
+// var Cars = new Cars(20);
+// setInterval(function() {
+//     Cars.winner = 0;
+//     Cars.generation();
+//     console.log(Cars.members)
+// }, 20);
