@@ -1,5 +1,4 @@
 import React from 'react'
-import { Race } from './race.jsx'
 import { Cars } from './genetic.js'
 import { RaceView } from './race-view.jsx'
 
@@ -28,7 +27,7 @@ export class Game extends React.Component {
     )
   }
 
-  newRace(vehicles) {
+  newRace() {
     let vehicles = this.genetics.members
     console.log('starting race with', vehicles)
     setTimeout(() => {
